@@ -1,17 +1,33 @@
-function calcularCredito() {
-    // Obtener los valores ingresados por el usuario
-    const montoCredito = parseFloat(document.getElementById("montoCredito").value);
-    const tasaInteresAnual = parseFloat(document.getElementById("tasaInteres").value);
-    const numCuotas = parseInt(document.getElementById("numCuotas").value);
+const ropa = [
+  { marca: "Remera", modelo: "estampa", precio: 5000 },
+  { marca: "Pantalon", modelo: "jean", precio: 8000 },
+  { marca: "Zapatillas", modelo: "blancas", precio: 30000 },
+  { marca: "Buzos", modelo: "verde", precio: 10000 },
+];
 
-    // Convertir la tasa de interés a mensual y calcular el monto mensual a pagar
-    const tasaInteresMensual = tasaInteresAnual / 12 / 100;
-    const montoMensual = montoCredito * (tasaInteresMensual * Math.pow(1 + tasaInteresMensual, numCuotas)) / (Math.pow(1 + tasaInteresMensual, numCuotas) - 1);
+let nombre = prompt("Ingrese la prenda de ropa que desea agregar");
+let producto = ropa.find((item) => item.marca === nombre);
 
-    // Calcular el monto total a pagar
-    const montoTotal = montoMensual * numCuotas;
+if (producto) {
+  let mensaje = `
+  Disponible el modelo: ${producto.modelo}
+  Precio: ${producto.precio}
+`;
+  alert(mensaje);
+} else {
+  alert("No disponible");
+}
 
-    // Mostrar los resultados en la página
-    document.getElementById("montoMensual").textContent = montoMensual.toFixed(2);
-    document.getElementById("montoTotal").textContent = montoTotal.toFixed(2);
+let consulta = prompt("¿Desea realizar esta compra?");
+
+if (consulta === "si") {
+  alert("Usted tiene un descuento especial");
+  let precioConDescuento = calcularPrecioConDescuento(producto.precio, 20);
+  alert(`Precio con descuento: ${precioConDescuento}`);
+}
+
+function calcularPrecioConDescuento(precio, descuento) {
+  const descuentoAplicado = (precio * descuento) / 100;
+  const precioConDescuento = precio - descuentoAplicado;
+  return precioConDescuento;
 }
