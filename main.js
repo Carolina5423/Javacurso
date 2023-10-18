@@ -1,33 +1,19 @@
-const ropa = [
-  { marca: "Remera", modelo: "estampa", precio: 5000 },
-  { marca: "Pantalon", modelo: "jean", precio: 8000 },
-  { marca: "Zapatillas", modelo: "blancas", precio: 30000 },
-  { marca: "Buzos", modelo: "verde", precio: 10000 },
-];
+<script>
+    function calcularPrestamo() {
+        var monto = parseFloat(document.getElementById('monto').value);
+        var tasa = parseFloat(document.getElementById('tasa').value);
+        var plazo = parseInt(document.getElementById('plazo').value);
 
-let nombre = prompt("Ingrese la prenda de ropa que desea agregar");
-let producto = ropa.find((item) => item.marca === nombre);
+        // Convierte la tasa anual a mensual y a decimal
+        var tasaMensual = (tasa / 100) / 12;
 
-if (producto) {
-  let mensaje = `
-  Disponible el modelo: ${producto.modelo}
-  Precio: ${producto.precio}
-`;
-  alert(mensaje);
-} else {
-  alert("No disponible");
-}
+        // Calcula la cuota mensual
+        var cuotaMensual = (monto * tasaMensual) / (1 - Math.pow(1 + tasaMensual, -plazo));
 
-let consulta = prompt("¿Desea realizar esta compra?");
+        // Calcula el total a pagar
+        var totalPagar = cuotaMensual * plazo;
 
-if (consulta === "si") {
-  alert("Usted tiene un descuento especial");
-  let precioConDescuento = calcularPrecioConDescuento(producto.precio, 20);
-  alert(`Precio con descuento: ${precioConDescuento}`);
-}
-
-function calcularPrecioConDescuento(precio, descuento) {
-  const descuentoAplicado = (precio * descuento) / 100;
-  const precioConDescuento = precio - descuentoAplicado;
-  return precioConDescuento;
-}
+        document.getElementById('cuotaMensual').textContent = '$' + cuotaMensual.toFixed(2);
+        document.getElementById('totalPagar').textContent = '$' + totalPagar.toFixed(2);
+    }
+</script>

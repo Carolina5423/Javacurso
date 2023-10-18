@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMPRAS</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Calculadora de Préstamo</title>
+
 </head>
 <body>
-
-<script src="./main.js"></script>
+    <h1>Calculadora de Préstamo</h1>
+    <label for="monto">Monto del Préstamo:</label>
+    <input type="number" id="monto" placeholder="Monto en dólares" required><br><br>
+    
+    <label for="tasa">Tasa de Interés Anual (%):</label>
+    <input type="number" id="tasa" placeholder="Tasa de interés en porcentaje" required><br><br>
+    
+    <label for="plazo">Plazo (en meses):</label>
+    <input type="number" id="plazo" placeholder="Plazo en meses" required><br><br>
+    
+    <button onclick="calcularPrestamo()">Calcular</button>
+    
+    <h2>Cuota Mensual:</h2>
+    <div id="cuotaMensual"></div>
+    
+    <h2>Total a Pagar:</h2>
+    <div id="totalPagar"></div>
 </body>
 </html>
